@@ -1,0 +1,23 @@
+.list > li{
+  position: relative;
+  border-bottom: 1px solid #222;
+}
+.list > li:first-child{
+  border-top: 1px solid #222;
+}
+.list > li::before{
+  display: block;
+  content: '';     /* 文字は入れないので空白 */
+
+  /* 矢印を作る */
+  width: 6px;
+  height: 6px;
+  border-top: 2px solid #7a0;    上の線
+  border-right: 2px solid #7a0;  /* 右の線 */
+  transform: rotate(45deg);      /* 線を回転 */
+
+  /* 位置の指定 */
+  position: absolute;    /* 自由に位置を指定できる */
+  top: calc(50% - 3px);  /* 上からの位置 */
+  right: 10px;           /* 右からの位置 */
+}
