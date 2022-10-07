@@ -6,6 +6,12 @@ body {
 a {
   text-decoration: none;
 }
+img{
+  display:block;
+  width:100%;
+  max-width:100%;
+  height: auto;
+}
 
 /* ===========================
  header
@@ -308,7 +314,7 @@ main {
 
 
 .vision {
-  position: relative;
+  position: absolute;
 }
 .vision__image{
   border-top: 60px solid #7BC2BA;
