@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF8">
+    <title>CBC jQuery</title>
+    <link rel="stylesheet" href="reset.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  </head>
+  <script>
+    $(function(){
+      $('#change_btn').click(function(){
+        $('#box').css({'color':'#0094d7'}) 
+      });
+      $('#text').mouseover(function(){
+        $(this).removeClass('hover_off');
+        $(this).addClass('hover_on');
+      });
+      $('#text').mouseout(function(){
+        $(this).removeClass('hover_on');
+        $(this).addClass('hover_off');
+      });
+  
+   
+     $('.accordion > li >div').click(function(){ 
+      $(this).next('ul').slideToggle('fast');
+     });
+  
+      $(window).scroll(function(){			/* windowがスクロールされた時に中の処理が実行されます */
+        if( $(this).scrollTop() > 100 ) {		/* もし、画面最上部からのスクロール量が100pxを超えたら */
+          $('.pageTop_btn').stop(true).fadeIn();	/* 'pageTop_btn'という名前の要素をフェードインさせます */
+        } else {						/* 画面最上部からのスクロール量が100px以内なら */
+          $('.pageTop_btn').stop(true).fadeOut();	/* 'pageTop_btn'をフェードアウトさせます */
+        }
+      });
+      $('.pageTop_btn').click(function(){		/* 'pageTop_btn'という名前の要素をクリックした時に */
+        $('body,html').animate({ scrollTop:0 },500);	/* ページの最上部に戻ります */
+      });
+  
+      $('ttip').hide();
+      $('#nav li').hover(
+        function(){
+          $(this).children('.ttip').fadeIn('fast');
+        },
+        function(){
+          $(this).children('.ttip').fadeOut('fast');
+        });
+    });
+    
+    
+  </script>
+  <body>
+    <section>
+      <div id="change_btn">ボタン</div>
+      <div id="box">
+        クリックをトリガーとして文字の色を変更するサンプルです。<br>
+        これは"changeColor_btn"というクラスがついている要素をクリックした時に<br>
+        "box"というidがついている要素内の文字色を変更しています。
+      </div>
+      <div id="text" class="hover_off">
+        背景色を変更するサンプルです。<br>
+        これは"text"というクラスがついている要素にマウスを乗せた時に<br>
+        "text"要素の背景色を変更しています。
+      </div>
+      <ul class="accordion">
+        <li>
+          <div>アコーディオン１</div>
+            
+              <ul class="accordion_inner">
+                  <li>１</li>
+                  <li>２</li>
+                  <li>３</li>
+              </ul>
+           
+        </li>
+        <li>
+          <div>アコーディオン２</div>
+        
+              <ul class="accordion_inner">
+                <li>コンテンツ１</li>
+                <li>コンテンツ２</li>
+                <li>コンテンツ３</li>
+               
+              </ul>
+        </li>
+        <li>
+          <div>アコーディオン３</div>
+           
+              <ul class="accordion_inner">
+                <li>コンテンツ１</li>
+                <li>コンテンツ２</li>
+                <li>コンテンツ３</li>
+              </ul>
+        </li>
+      </ul>
+      <div id="nav">
+        <ul>
+          <li>1<p class="ttip">ツールチップ1</p></li>
+          <li>2<p class="ttip">ツールチップ2</p></li>
+          <li>3<p class="ttip">ツールチップ3</p></li>
+        </ul>
+        </div>
+    </section>
+    <div class="pageTop_btn">
+      <img src="top.png" alt="ページトップへ戻る">
+    </div>
+  </body>
+</html>

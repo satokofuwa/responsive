@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF8">
+    <title>CBC jQuery</title>
+    <link rel="stylesheet" href="reset.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  </head>
+  <script>
+    $(function(){
+      $('#calc').on('change',function(){
+      let numA = parseInt($('.number_A').val());
+      let numB = parseInt($('.number_B').val());
+      $('#number_total').text(numA + numB);
+      });
+    });
+    $(function(){
+      $('#cir').on('change',function(){
+       let radius= parseInt($('.radius').val());
+       let ans = radius * 2 * 3.14;
+       $('#number_cir').text(ans.toFixed(2));
+  
+      });
+    });
+    function tax(price){  /*消費税を計算する計算*/
+      let tax =0.08;
+      let floatTax = price * tax;
+      return Math.round(floatTax);
+
+    }
+    $(function(){
+  $('#tax').on('change', function(){	/* ← 文字入力を検知したら起動 */
+    let num = parseInt( $('.ex_price').val() );	/* ← inputタグに入力された値を変数numに代入 */
+    let t   = tax(num);		/* ← tax関数で計算した値を変数tに代入 */
+    $('.ex_tax').text(t);		/* ← <span class="ex_tax">に変数tの値を出力 */
+  });
+    });
+    $(function(){
+  $('#tax_console').on('change', function(){
+    let num      = parseInt( $('.ex_price_console').val() );
+    let floatTax = num * 0.08;
+    console.log(floatTax);   /* コンソールでfloatTax変数に入っている内容を表示させる */
+    let t        = tax(num);
+    $('.ex_tax_console').text(t);
+  });
+});
+
+$(function() {
+  $('.modal-open').on('click', function(){
+    $('#contents').css('filter', 'none');
+    $('body').append('<div class="modal-overlay"></div>');
+    $('.modal-content, .modal-overlay').fadeIn('slow');
+
+    $('.modal-overlay').on('click', function(){
+      $('.modal-content, .modal-overlay').fadeOut('slow',function(){
+        $('.modal-overlay').remove();
+      });
+    });
+
+    modalResize();
+
+    function modalResize(){
+      let w = $(window).width();
+      let h = $(window).height();
+      let cw = $('.modal-content').outerWidth();
+      let ch = $('.modal-content').outerHeight();
+      $('.modal-content').css({
+        'left' : ((w - cw)/2) + 'px',
+        'top'  : ((h - ch)/2) + 'px'
+      });
+    }
+  });
+});
+
+  </script>
+<body>
+  <div id="calc">
+    <span><input class="number_A" type="number"></span> +
+    <span><input class="number_B" type="number"></span> =
+    <span id="number_total"></span>
+  </div>
+
+  <div id = "cir" style="margin-bottom:20px;">
+    <span> <input class = "radius" type ="number" style ="width:50px"></span>*3.14 =
+    <span id = "number_cir" ></span>
+  </div>
+  <div id="tax">
+    <input class="ex_price"> 消費税:<span class="ex_tax"></span> 円
+  </div>
+  <div id="tax_console">
+    <input class="ex_price_console"> 消費税: <span class="ex_tax_console"></span> 円
+  </div>
+  <div class="modal-open">モーダル起動!</div>
+<div class="modal-content">
+  モーダルウィンドウの中身<br>
+  モーダルウィンドウの中身
+</div>
+
+</body>
+</html>
