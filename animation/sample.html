@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>アニメーション</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+  <script>
+    $(function(){
+      $('.btn3').on('click',function(){
+        $('.trans3').toggleClass('active');
+      });
+    });
+    $(function(){
+       $('.btn4').on('click', function(){
+         $('.trans4').toggleClass('active');
+       });
+    });
+  </script>
+</head>
+<body>
+  <button class = "btn3">トリガークリック</button>
+  <div style = "height:200px; ">
+    <div class = "trans3"></div>
+  </div>
+  <button class ="btn4">トリガー[クリック]</button>
+  <div class = "trans4-container">
+    <div class = "trans4"></div>
+  </div>
+</body>
